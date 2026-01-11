@@ -197,17 +197,17 @@
 - Создать структуру каталогов:
 - Определить интерфейсы:
 
-```go
+```
 type Parser interface {
-Parse(file io.Reader, filename string) ([]ChatEvent, error)
+    Parse(file io.Reader, filename string) ([]ChatEvent, error)
 }
 
 type Extractor interface {
-Extract(events []ChatEvent) (ParticipantsResult, error)
+    Extract(events []ChatEvent) (ParticipantsResult, error)
 }
 
 type Exporter interface {
-Export(result ParticipantsResult) ([]byte, error)
+    Export(result ParticipantsResult) ([]byte, error)
 }
 ````
 
@@ -238,10 +238,10 @@ Export(result ParticipantsResult) ([]byte, error)
 
 **Состояние сессии:**
 
-```go
+```
 type Session struct {
-Files []TempFileReference
-Status SessionStatus
+    Files []TempFileReference
+    Status SessionStatus
 }
 ```
 
@@ -290,7 +290,7 @@ Status SessionStatus
       `actor`).
     * Собрать `ChatEvent`:
 
-      ```go
+      ```
       type ChatEvent struct {
           FromUserID string
           Username   string
@@ -352,16 +352,16 @@ Status SessionStatus
 
 **Описание:**
 
-```go
+```
 type Participant struct {
-ID           string
-Username     string
-FirstName    string
-LastName     string
-Bio          string
-RegisteredAt *time.Time
-HasChannel   bool
-IsDeleted    bool
+    ID           string
+    Username     string
+    FirstName    string
+    LastName     string
+    Bio          string
+    RegisteredAt *time.Time
+    HasChannel   bool
+    IsDeleted    bool
 }
 ```
 
@@ -385,11 +385,11 @@ IsDeleted    bool
     * пустые username
 * Построить итоговую структуру:
 
-```go
+```
 type ParticipantsResult struct {
-Participants []Participant
-Mentions     []Participant
-Channels     []string
+    Participants []Participant
+    Mentions     []Participant
+    Channels     []string
 }
 ```
 
@@ -462,7 +462,7 @@ Channels     []string
 
 * Интерфейс:
 
-  ```go
+  ```
   type TempStorage interface {
      Save(name string, r io.Reader) (string, error)
      Read(path string) (io.ReadCloser, error)
@@ -509,15 +509,3 @@ Channels     []string
 **DoD:**
 
 * Проект поднимается на чистой машине за < 5 минут.
-
----
-
-# Конечные артефакты
-
-* Telegram-бот
-* GitHub repo
-* Docker-compose
-* Excel пример
-* ARCHITECTURE.md
-* README.md
-* TECH_LIMITS.md
