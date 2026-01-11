@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: telegram-export-bot
+    restart: unless-stopped
+
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      MAX_FILES: ${MAX_FILES:-10}
+      MAX_FILE_SIZE_MB: ${MAX_FILE_SIZE_MB:-10}
+      MAX_TOTAL_SIZE_MB: ${MAX_TOTAL_SIZE_MB:-100}
+      SESSION_TIMEOUT_MINUTES: ${SESSION_TIMEOUT_MINUTES:-60}
+      TEMP_DIR: /tmp/telegram-bot
+
+    volumes:
+      - bot_temp:/tmp/telegram-bot
+
+    networks:
+      - telegram-bot-net
+
+volumes:
+  bot_temp:
+    driver: local
+
+networks:
+  telegram-bot-net:
+    driver: bridge
+
