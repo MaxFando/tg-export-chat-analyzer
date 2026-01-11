@@ -1,10 +1,11 @@
 package main
 
 import (
-	"hackaton/internal/delivery/telegram"
 	"log"
 	"os"
 	"strconv"
+
+	"github.com/MaxFando/tg-export-chat-analyzer/internal/delivery/telegram"
 )
 
 func main() {

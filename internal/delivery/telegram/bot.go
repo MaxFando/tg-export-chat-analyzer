@@ -2,17 +2,18 @@ package telegram
 
 import (
 	"fmt"
-	"hackaton/internal/service/export"
-	"hackaton/internal/service/participant"
-	"hackaton/internal/service/session"
 	"net/http"
 	"path/filepath"
 	"time"
 
+	"github.com/MaxFando/tg-export-chat-analyzer/internal/service/export"
+	"github.com/MaxFando/tg-export-chat-analyzer/internal/service/participant"
+	"github.com/MaxFando/tg-export-chat-analyzer/internal/service/session"
+
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/inqast/fstorage/storage"
 
-	"hackaton/pkg/logger"
+	"github.com/MaxFando/tg-export-chat-analyzer/pkg/logger"
 
 	"github.com/Nikalively/telegram-export-parser/parser"
 	"github.com/lintenved/tg-exporter/exporter"
